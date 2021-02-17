@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent="formHandler" class="form-1">
+<div v-if="state">нет страницы</div>
+  <form v-else @submit.prevent="formHandler" class="form-1">
     <p class="field">
         <input type="text" name="login" placeholder="login/email">
         <i class="icon-user icon-large"></i>
@@ -18,7 +19,13 @@
 <script>
 export default {
   props: ["auth"],
-  inject: ["signIn"]
+  inject: ["signIn"],
+
+  data() {
+      return {
+        state: this.auth
+      }
+  }
 };
 </script>
 

@@ -30,7 +30,7 @@ const routes = [
     path: "/users",
     component: UsersList
   },
-  { path: "/:notFound(.*)", 
+  { path: "/:notFound(.*)",
     component: NotFound 
   },
   {

@@ -22,7 +22,7 @@
 <script>
 export default {
   props: ["auth"],
-  inject: ["logout"]
+  inject: ["logout", "logIn"]
 };
 </script>
 
