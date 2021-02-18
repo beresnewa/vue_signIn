@@ -37,12 +37,12 @@ export default {
       users: this.users,
       signIn: this.signIn,
       logout: this.logout,
-      logIn: this.logIn
     };
   },
   mounted() {
-    if (localStorage.login) {
-      this.login = localStorage.login;
+    const login = localStorage.getItem("login");
+    if (login) {
+      this.login = login;
     }
   },
   methods: {
@@ -53,17 +53,13 @@ export default {
       localStorage.setItem("UserLogin", this.login);
       this.auth = true;
       console.log(this.auth);
-      this.$router.push({path:"/teams"})
+      this.$router.push({ path: "/teams" });
     },
     logout() {
       this.auth = false;
       localStorage.removeItem("UserLogin", this.login);
-      console.log("logout: " + this.auth );
+      console.log("logout: " + this.auth);
     }
-    // logIn() {
-    //   this.auth = true;
-    //   console.log(this.auth);
-    // }
   }
 };
 </script>
