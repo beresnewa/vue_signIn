@@ -27,13 +27,16 @@ const routes = [
     ]
   },
   {
+    name: "users",
     path: "/users",
     component: UsersList
   },
-  { path: "/:notFound(.*)",
-    component: NotFound 
+  {
+    path: "/:notFound(.*)",
+    component: NotFound
   },
   {
+    name: "auth",
     path: "/login",
     component: Auth
   }
@@ -45,14 +48,16 @@ const router = createRouter({
 });
 
 router.beforeEach(function(to, _from, next) {
-  // здесь можно расположить логику для гвардов (например редерект на auth, компонент который нужно создать)
-  // if (to.meta.needsAuth === true) {
-  //   console.log("Needs auth!");
-  //   next();
-  // } else {
-  //   next();
-  // }
-  next();
+  if (to.meta.needsAuth) {
+    if (localStorage.getItem("login") === null) {
+      console.log("Needs auth!");
+      next({ name: "auth" });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

@@ -50,14 +50,14 @@ export default {
       this.activePage = page;
     },
     signIn() {
-      localStorage.setItem("UserLogin", this.login);
+      localStorage.setItem("login", this.login);
       this.auth = true;
       console.log(this.auth);
       this.$router.push({ path: "/teams" });
     },
     logout() {
       this.auth = false;
-      localStorage.removeItem("UserLogin", this.login);
+      localStorage.removeItem("login", this.login);
       console.log("logout: " + this.auth);
     }
   }
