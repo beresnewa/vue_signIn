@@ -53,6 +53,7 @@ export default {
       localStorage.setItem("login", this.login);
       this.auth = true;
       this.$router.push({ path: "/teams" });
+      console.log(this.auth);
     },
     logout() {
       this.auth = false;
