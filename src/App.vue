@@ -42,7 +42,7 @@ export default {
   mounted() {
     const login = localStorage.getItem("login");
     if (login) {
-      this.login = login;
+      this.auth = true;
     }
   },
   methods: {
@@ -52,7 +52,6 @@ export default {
     signIn() {
       localStorage.setItem("login", this.login);
       this.auth = true;
-      console.log(this.auth);
       this.$router.push({ path: "/teams" });
     },
     logout() {

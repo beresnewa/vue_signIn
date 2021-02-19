@@ -38,6 +38,7 @@ const routes = [
   {
     name: "auth",
     path: "/login",
+    meta: { notNeedsAuth: true },
     component: Auth
   }
 ];
@@ -52,12 +53,17 @@ router.beforeEach(function(to, _from, next) {
     if (localStorage.getItem("login") === null) {
       console.log("Needs auth!");
       next({ name: "auth" });
-    } else {
-      next();
     }
-  } else {
     next();
   }
+  if (to.meta.notNeedsAuth) {
+    if (localStorage.getItem("login") !== null) {
+      console.log("Not Needs auth!");
+      next({ name: "users" });
+    }
+    next();
+  }
+  next();
 });
 
 export default router;
